@@ -56,14 +56,18 @@ public class SecurityConfig {
                 .setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT", "OPTIONS", "PATCH", "DELETE"));
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setExposedHeaders(List.of("Authorization"));
-
-        http.csrf().disable().cors().configurationSource(request -> corsConfiguration).and().authorizeHttpRequests((authorize)->{
-                    authorize.requestMatchers(HttpMethod.GET,"/api/posts").permitAll()
+//        http.csrf().disable().cors().configurationSource(request -> corsConfiguration).and()
+        http.cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(request -> corsConfiguration)).authorizeHttpRequests((authorize) -> {
+                    authorize.requestMatchers(HttpMethod.GET, "/api/posts").permitAll()
                             .requestMatchers("/api/auth/**").permitAll()
                             .requestMatchers("/image/**").permitAll()
+                            .requestMatchers("/swagger-ui/**").permitAll()
+                            .requestMatchers("/swagger-resources/**").permitAll()
+                            .requestMatchers("/swagger-ui.html").permitAll()
+                            .requestMatchers("/webjars/**").permitAll()
                             .anyRequest().authenticated();
-                }).exceptionHandling(exception-> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
-                .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                }).exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

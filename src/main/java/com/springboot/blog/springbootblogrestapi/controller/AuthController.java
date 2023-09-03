@@ -29,7 +29,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/auth")
-
 public class AuthController {
 
     @Autowired

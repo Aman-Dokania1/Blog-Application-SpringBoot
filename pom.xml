@@ -38,6 +38,45 @@
 		</dependency>
 
 		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<!--		<dependency>-->
+		<!--			<groupId>net.sf.uadetector</groupId>-->
+		<!--			<artifactId>uadetector-resources</artifactId>-->
+		<!--			<version>2014.10</version>-->
+		<!--		</dependency>-->
+
+		<!--		<dependency>-->
+		<!--			<groupId>eu.bitwalker</groupId>-->
+		<!--			<artifactId>UserAgentUtils</artifactId>-->
+		<!--			<version>1.22-SNAPSHOT</version>-->
+		<!--		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/eu.bitwalker/UserAgentUtils -->
+		<dependency>
+			<groupId>eu.bitwalker</groupId>
+			<artifactId>UserAgentUtils</artifactId>
+			<version>1.21</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mobile -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mobile</artifactId>
+			<version>1.5.22.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+
+
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
@@ -169,6 +208,16 @@
 				<enabled>false</enabled>
 			</releases>
 		</repository>
+
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/libs-milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>

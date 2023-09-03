@@ -9,11 +9,14 @@ import com.springboot.blog.springbootblogrestapi.repository.ImageRepositroy;
 import com.springboot.blog.springbootblogrestapi.service.PostService;
 import com.springboot.blog.springbootblogrestapi.util.AppConstants;
 import com.springboot.blog.springbootblogrestapi.util.ImageUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mobile.device.Device;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -65,10 +68,17 @@ public class PostController {
             @RequestParam(value = "pageNo",defaultValue = AppConstants.DEFAULT_PAGE_NUMBER,required = false)int pageNo,
             @RequestParam(value = "pageSize",defaultValue = AppConstants.DEFAULT_PAGE_SIZE,required = false)int pageSize,
             @RequestParam(value = "sortBy",defaultValue = AppConstants.DEFAULT_SORT_BY,required = false)String sortBy,
-            @RequestParam(value = "sortDir",defaultValue = AppConstants.DEFAULT_SORT_DIRECTION,required = false)String sortDir
+            @RequestParam(value = "sortDir",defaultValue = AppConstants.DEFAULT_SORT_DIRECTION,required = false)String sortDir,
+            @RequestHeader(value="User-Agent") String user_Agent,
+            HttpServletRequest httpServletRequest
     ){
+        System.out.println(user_Agent);
+        System.out.println(httpServletRequest.getHeader("User-Agent"));
+//        UserAgent userAgent=UserAgent.
         return new ResponseEntity<>(postService.getAllPOst(pageNo,pageSize,sortBy,sortDir),HttpStatus.OK);
     }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<PostDto> getPostById(@PathVariable ("id") Long postId){
